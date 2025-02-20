@@ -3,7 +3,6 @@ const router = express.Router(); // Router logic
 const { expressjwt: jwt } = require("express-jwt");
 const auth = jwt({
   secret: process.env.JWT_SECRET,
-  algorithms: ["HS256"],
   userProperty: "payload",
 });
 
@@ -24,7 +23,7 @@ router
 // POST Method Adds a Trip
 router
   .route("/trips/:tripCode")
-  .get(tripsController.tripsFindByCode)
+  .get(tripsController.tripsFindCode)
   .put(auth, tripsController.tripsUpdateTrip);
 
 module.exports = router;
